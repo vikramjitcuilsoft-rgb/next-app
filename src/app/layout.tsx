@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Toaster } from "sonner";
+import { Providers } from '@/services/providers/providers';
 
 export const metadata: Metadata = {
   title: 'Mystc Dashboard',
@@ -22,7 +24,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/my-logo.jpg" />
       </head>
       <body>
-        {children}
+        <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   )

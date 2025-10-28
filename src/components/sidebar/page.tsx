@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Home,
   Calendar,
@@ -14,15 +14,32 @@ import {
   HelpCircle,
   ChevronDown,
 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useState } from "react";
 
 const Sidebar = () => {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const router = useRouter()
+  const [openLogoutDialog, setOpenLogoutDialog] = useState(false);
 
   const toggleSubMenu = (menu: string) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
+
+    const handleLogout = () => {
+    localStorage.removeItem('token')
+    router.push('/auth/login')
+  }
 
   const menu = [
     { name: "Dashboard", icon: <Home size={18} />, href: "/dashboard" },
@@ -33,9 +50,10 @@ const Sidebar = () => {
       name: "Profile",
       icon: <User size={18} />,
       subMenu: [
-        { name: "Service", href: "/profile/service" },
-        { name: "Wallet", href: "/profile/wallet" },
-        { name: "Session Break", href: "/profile/session-break" },
+        { name: "Service", href: "#" },
+        { name: "Wallet", href: "#" },
+        { name: "Session Break", href: "/dashboard/#" },
+        { name: "Change Password", href: "/dashboard/profile/change-password" },
       ],
     },
     { name: "Statistics & Performance", icon: <BarChart3 size={18} />, href: "#" },
@@ -110,10 +128,33 @@ const Sidebar = () => {
         <button className="flex items-center gap-2 text-gray-700 hover:text-blue-700 w-full">
           <HelpCircle size={18} /> Help Center
         </button>
-        <button className="flex items-center gap-2 text-red-600 hover:text-red-700 w-full">
+        <button onClick={() => setOpenLogoutDialog(true)} className="flex items-center gap-2 text-red-600 hover:text-red-700 w-full">
           <LogOut size={18} /> Sign Out
         </button>
       </div>
+
+           {/* Sign Out Confirmation Dialog */}
+      <AlertDialog open={openLogoutDialog} onOpenChange={setOpenLogoutDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure you want to sign out?</AlertDialogTitle>
+            <AlertDialogDescription>
+              You will need to log in again to access your dashboard.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setOpenLogoutDialog(false)}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleLogout}
+              className="bg-red-500 hover:bg-red-600 text-white"
+            >
+              Yes, Sign Out
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </aside>
   );
 };
