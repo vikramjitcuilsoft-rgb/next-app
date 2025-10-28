@@ -36,13 +36,14 @@ const mutation = useMutation({
     return response;
   },
   onSuccess: (data : any) => {
-    console.log('data login',data.data);
+    console.log('data login',data.data.user);
     
     toast.success("Login successful 🎉 Redirecting...");
     
     // Optionally store token (if your backend returns one)
     if (data?.data.access_token) {
       localStorage.setItem("token", data.data.access_token);
+      localStorage.setItem("user", JSON.stringify(data.data.user)); 
     }
 
     router.push("/dashboard");

@@ -70,7 +70,7 @@ const Header = () => {
           {/* Dropdown menu */}
           {isMenuOpen && (
             <div className="absolute right-0 mt-3 w-40 bg-white shadow-lg rounded-lg border border-gray-100 py-2 z-50 animate-fadeIn">
-              <button className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              <button onClick={() => router.push('/dashboard/profile/change-password')} className="flex items-center gap-2 w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                 <Settings size={16} /> Settings
               </button>
               <button

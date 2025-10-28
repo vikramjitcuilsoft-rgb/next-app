@@ -43,21 +43,21 @@ const Sidebar = () => {
 
   const menu = [
     { name: "Dashboard", icon: <Home size={18} />, href: "/dashboard" },
-    { name: "Schedule", icon: <Calendar size={18} />, href: "/dashboard/test" },
-    { name: "Message", icon: <MessageSquare size={18} />, href: "#" },
-    { name: "Clients", icon: <Users size={18} />, href: "#" },
+    { name: "Schedule", icon: <Calendar size={18} />, href: "/dashboard/schedule" },
+    { name: "Message", icon: <MessageSquare size={18} />, href: "/dashboard/chat" },
+    { name: "Clients", icon: <Users size={18} />, href: "/dashboard/clients" },
     {
       name: "Profile",
       icon: <User size={18} />,
       subMenu: [
-        { name: "Service", href: "#" },
-        { name: "Wallet", href: "#" },
-        { name: "Session Break", href: "/dashboard/#" },
+        { name: "Service", href: "/dashboard/profile/service" },
+        { name: "Wallet", href: "/dashboard/profile/wallet" },
+        { name: "Session Break", href: "/dashboard/profile/session-break" },
         { name: "Change Password", href: "/dashboard/profile/change-password" },
       ],
     },
-    { name: "Statistics & Performance", icon: <BarChart3 size={18} />, href: "#" },
-    { name: "Preferences", icon: <Settings size={18} />, href: "#" },
+    { name: "Statistics & Performance", icon: <BarChart3 size={18} />, href: "/dashboard/statistics-and-performance" },
+    { name: "Preferences", icon: <Settings size={18} />, href: "/dashboard/perfrences" },
   ];
 
   return (
