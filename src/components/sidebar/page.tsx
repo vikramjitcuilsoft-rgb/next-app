@@ -50,7 +50,7 @@ const Sidebar = () => {
       name: "Profile",
       icon: <User size={18} />,
       subMenu: [
-        { name: "Service", href: "/dashboard/profile/service" },
+        { name: "Edit Profile", href: "/dashboard/profile/edit-profile" },
         { name: "Wallet", href: "/dashboard/profile/wallet" },
         { name: "Session Break", href: "/dashboard/profile/session-break" },
         { name: "Change Password", href: "/dashboard/profile/change-password" },

@@ -58,5 +58,26 @@ export const apiPatch = <T>(url: string, data?: any, config?: AxiosRequestConfig
 export const apiDelete = <T>(url: string, config?: AxiosRequestConfig) =>
   api.delete<T>(url, config).then((res) => res.data);
 
+export const apiUpload = async <T>(
+  url: string,
+  formData: FormData,
+  config?: AxiosRequestConfig
+): Promise<T> => {
+  try {
+    const response = await api.post<T>(url, formData, {
+      ...config,
+      headers: {
+        ...(config?.headers || {}),
+        Authorization: config?.headers?.Authorization,
+        "Content-Type": "multipart/form-data", // ✅ important
+      },
+    });
+    return response.data;
+  } catch (error: any) {
+    console.error("Upload failed:", error.response || error);
+    throw error;
+  }
+};
+
 // Default export
 export default api;
