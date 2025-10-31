@@ -5,7 +5,7 @@ console.log('process.env.NEXT_APP_PUBLIC_API_URL',process.env.NEXT_APP_PUBLIC_AP
 
 // Create Axios instance
 const api: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_APP_PUBLIC_API_URL || "http://localhost:9090/api/v1",
+  baseURL: process.env.NEXT_APP_PUBLIC_API_URL || "http://16.16.180.253/api/v1",
   headers: {
     "Content-Type": "application/json",
   },
